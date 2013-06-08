@@ -29,10 +29,7 @@
  */
 
 #import "GGLResourceScheme.h"
-
-#ifdef __APPLE__
 #include "TargetConditionals.h"
-#endif
 
 #define GGL_RESOURCE_SCHEME_DEFAULT_SCHEME @"rsrc"
 
@@ -51,7 +48,7 @@ NSString *GGLResourceSchemeCustomSchemeName = nil;
     /*
      Don't assume WebKit is linked here... Class may be copied into a project that doesn't use WebKit.
     */
-    #ifdef TARGET_OS_MAC
+    #if TARGET_OS_IPHONE == 0
     Class webKitClass = NSClassFromString(@"WebView");
     if (webKitClass) {
         [webKitClass performSelector:@selector(registerURLSchemeAsLocal:) withObject:[self resourceURLSchemeName]];
