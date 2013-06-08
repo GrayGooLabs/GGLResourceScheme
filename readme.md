@@ -13,7 +13,7 @@ Then, from almost anywhere within cocoa or cocoa touch that you can use a URL, y
 For example, if you use a WebView for internal UI rendering, and you want to use common CSS or JavaScript files stored in your bundle's resources, or you want easy access to images from your bundle's resources, you might load HTML that looked like this:
 
 
-'''html
+```html
 <html>
 	<head>
 		<script language="javascript" src="rsrc:///common.js"></script>
@@ -25,11 +25,13 @@ For example, if you use a WebView for internal UI rendering, and you want to use
 	
 	</body>
 </html>
-'''
+```
+
+(Where `common.js`, `common.css`, and `logo.png` are all files you've included in your app's bundle's resources via Xcode.)
 
 ### Installation
 
-The easiest way to add GGLResourceScheme to you project is to simply download the `GGLResourceScheme.h` and `GGLResourceScheme.m` files from the repo, and import them into your project. On OS X, GGLResourceScheme requires your project be linked with WebKit.framework.
+The easiest way to add GGLResourceScheme to you project is to simply download the `GGLResourceScheme.h` and `GGLResourceScheme.m` files from the repo, and import them into your project.
 
 The GGLResourceScheme project itself is an Xcode project with targets to build static libraries for either OS X or iOS. An advanced user *could* add GGLResourceScheme to their project as a git submodule, and then build and link the library, however, this is probably overkill and instructions to do so are beyond the scope of this readme.
 
@@ -43,7 +45,7 @@ Under the hood, GGLResourceScheme uses the `[[NSBundle mainBundle] URLForResourc
 
 An `rsrc:///` URL simply finds the URL for the resource, and the forwards the URL loading system to the appropriate `file:///` URL. This has a few security implications. Many URL clients, including WebKit, treat `file:///` URLs as special and privileged:
 
-In a WebView or UIWebview, a page loaded via an `http://` URL generally cannot load a local `file:///` URL. This is a desirable security feature, and the main reason `rsrc:///` URLs are designed to forward to `file:///` URls.
+In a `WebView` or `UIWebView`, a page loaded via an `http://` URL generally cannot load a local `file:///` URL. This is a desirable security feature, and the main reason `rsrc:///` URLs are designed to forward to `file:///` URls.
 
 However, because of this security feature, in some cases URL clients will refuse to follow a redirect from a non-privileged URL to a privileged URL. In these cases, `rsrc` URLs provided by GGLResourceScheme won't work, and may fail silently. **On iOS only, a UIWebView will not allow an `rsrc:///` URL to be loaded into it's main frame.** It will still allow images, javascript, and CSS to be loaded via `rsrc` URLs, however. (This is not an issue on OS X thanks to the [WebView registerURLSchemeAsLocal:] method, which allows GGLResourceScheme to mark `rsrc` URLs themselves as privileged. Alas, no equivalent appears to exist on iOS.)
 
