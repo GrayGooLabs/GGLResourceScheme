@@ -8,9 +8,9 @@ GGLResourceScheme is a dead simple NSURLProtocol subclass that adds the `rsrc://
 
 During your app's initialization, call `[GGLResourceScheme registerResourceURLScheme]`.
 
-Then, from almost anywhere within cocoa or cocoa touch that you can use a URL, you may use an `rsrc:///BundleResourceName.ext` URL (Where `BundleResourceName.ext` is the name of a file within your app's bundle's resources) to gain direct access to your bundle's resource files.
+Then, from almost anywhere within cocoa or cocoa touch that you can use a URL, you may use an `rsrc:///BundleResourceName.ext` URL (where `BundleResourceName.ext` is the name of a file within your app's bundle resources) to gain direct access to your app's resource files.
 
-For example, if you use a WebView for internal UI rendering, and you want to use common CSS or JavaScript files stored in your bundle's resources, or you want easy access to images from your bundle's resources, you might load HTML that looked like this:
+For example, if you use a WebView for internal UI rendering, and you want to link to CSS or JavaScript files stored in your app's resources, or you want easy access to your app's images, you might load HTML that looked like this:
 
 
 ```html
@@ -27,13 +27,13 @@ For example, if you use a WebView for internal UI rendering, and you want to use
 </html>
 ```
 
-(Where `common.js`, `common.css`, and `logo.png` are all files you've included in your app's bundle's resources via Xcode.)
+(Where `common.js`, `common.css`, and `logo.png` are all files you've included in your app's bundle resources via Xcode.)
 
 ### Installation
 
 The easiest way to add GGLResourceScheme to you project is to simply download the `GGLResourceScheme.h` and `GGLResourceScheme.m` files from the repo, and import them into your project.
 
-The GGLResourceScheme project itself is an Xcode project with targets to build static libraries for either OS X or iOS. An advanced user *could* add GGLResourceScheme to their project as a git submodule, and then build and link the library, however, this is probably overkill and instructions to do so are beyond the scope of this readme.
+The GGLResourceScheme project itself is an Xcode project with targets to build static libraries for either OS X or iOS. An advanced user *could* add GGLResourceScheme to their project as a git submodule, and then build and link the library as a dependency, however, this is probably overkill and instructions to do so are beyond the scope of this readme.
 
 ### Three slashes
 
