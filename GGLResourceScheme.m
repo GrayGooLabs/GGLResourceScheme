@@ -27,9 +27,14 @@
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 #import "GGLResourceScheme.h"
 
-#define GL_BUNDLE_RESOURCE_URL_SCHEME_DEFAULT_SCHEME @"rsrc"
+#ifdef __APPLE__
+#include "TargetConditionals.h"
+#endif
+
+#define GGL_RESOURCE_SCHEME_DEFAULT_SCHEME @"rsrc"
 
 NSString * const GGLResourceSchemeErrorDomain = @"GGLResourceSchemeErrorDomain";
 
@@ -67,7 +72,7 @@ NSString *GGLResourceSchemeCustomSchemeName = nil;
 +(NSString *)resourceURLSchemeName
 {
     if (GGLResourceSchemeCustomSchemeName == nil) {
-        GGLResourceSchemeCustomSchemeName = GL_BUNDLE_RESOURCE_URL_SCHEME_DEFAULT_SCHEME;
+        GGLResourceSchemeCustomSchemeName = GGL_RESOURCE_SCHEME_DEFAULT_SCHEME;
     }
     return GGLResourceSchemeCustomSchemeName;
 }
