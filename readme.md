@@ -1,6 +1,6 @@
 # GGLResourceScheme
 
-## Adds an 'rsrc:///' URL scheme to the system URL loader for easy access to bundle resources
+## Adds the 'rsrc:///' URL scheme to an OS X or iOS app's URL loading system, allowing direct URL access to bundle resource files.
 
 GGLResourceScheme is a dead simple NSURLProtocol subclass that adds the `rsrc:///` URL scheme to the URL loading mechanism of an OS X or iOS app. It's not exactly rocket science, but enough people expressed amazement that this could be done that I thought I'd throw up a simple, useful example library.
 
